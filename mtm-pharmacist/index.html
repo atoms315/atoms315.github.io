@@ -1,0 +1,478 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Remote MTM Pharmacist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+<style>
+/* Layout: the Bold candidate-pack direction from candidate-pack-microsites —
+   sticky nav, big-type hero with hard numbers, one saturated section, then
+   left-rail sections (eyebrow + rule) with the content on the right.
+   Tokens are the Nocturne design system, copied from that repo. Single dark
+   look by choice, to match the pack family. */
+:root {
+  color-scheme: dark;
+  --color-bg: #161826;
+  --color-surface: #232532;
+  --color-text: #e9e9ed;
+  --color-accent: #9184d9;
+  --color-accent-2: #a7a1db;
+  --color-divider: color-mix(in srgb, #e9e9ed 16%, transparent);
+  --color-neutral-100: #f3f5fe; --color-neutral-200: #e4e7f5; --color-neutral-300: #cfd3e5;
+  --color-neutral-400: #b2b6ca; --color-neutral-500: #9397ab; --color-neutral-600: #75798c;
+  --color-neutral-700: #595d6c; --color-neutral-800: #3f424d; --color-neutral-900: #292b31;
+  --color-accent-100: #f5f4ff; --color-accent-200: #e7e5fe; --color-accent-300: #d2cefd;
+  --color-accent-400: #b5abfc; --color-accent-500: #968ae0; --color-accent-600: #796cbf;
+  --color-accent-700: #5d5294; --color-accent-800: #423a6a; --color-accent-900: #2b2741;
+  --color-section: #262a60; --color-section-glow: #353b80; --color-section-ghost: #4c5397;
+  --font-heading: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading-weight: 500;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 14px;
+  --shadow-sm: 0 0 0 1px #3f424d;
+  --shadow-md: 0 0 0 1px #595d6c, 0 6px 18px rgba(0,0,0,0.55);
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); font-size: 15px; line-height: 1.55; font-weight: 400; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--color-bg); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); line-height: 1.12; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0; }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent-300); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+ul { margin: 0; padding-left: 18px; }
+li + li { margin-top: 8px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; font-family: var(--font-heading); font-weight: 500; font-size: 14px; line-height: 1.2; color: var(--color-text); background: transparent; border: 1px solid transparent; padding: 8px 12px; border-radius: var(--radius-md); white-space: nowrap; }
+.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); color: var(--color-accent-300); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); color: var(--color-text); }
+.btn-ghost { color: var(--color-neutral-400); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); color: var(--color-accent-300); }
+.btn-lg { font-size: 15px; padding: 12px 20px; }
+.btn-block { width: 100%; }
+
+.card { display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: var(--radius-md); background: var(--color-surface); min-width: 0; }
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card ul { font-size: 14px; line-height: 1.55; color: var(--color-neutral-300); }
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; border-radius: 6px; }
+.tag-accent { background: var(--color-accent-800); color: var(--color-accent-100); }
+.tag-neutral { background: var(--color-neutral-800); color: var(--color-neutral-100); }
+.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; padding-left: var(--gutter-l); padding-right: var(--gutter-r); background: color-mix(in srgb, var(--color-bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-neutral-900); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+.brand-mark { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--color-accent); display: grid; place-items: center; flex: none; }
+.brand-mark i { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+.brand span { font-family: var(--font-heading); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; }
+.nav-links { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--color-neutral-400); }
+.nav-links a:not(.btn) { color: inherit; text-decoration: none; }
+.nav-links a:not(.btn):hover { color: var(--color-accent); }
+@media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+
+/* shells */
+.wrap { max-width: 1400px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.section { padding-block: 0 96px; }
+.split { display: grid; grid-template-columns: minmax(220px, 340px) minmax(0, 1fr); gap: 64px; align-items: start; }
+.rail { position: sticky; top: calc(72px + env(safe-area-inset-top, 0px)); }
+.rail h6 { color: var(--color-accent); margin: 0 0 12px; }
+.rail .rule { height: 2px; width: 56px; background: var(--color-accent); }
+.rail p { font-size: 14px; color: var(--color-neutral-500); margin-top: 16px; line-height: 1.55; }
+.content { display: grid; gap: 40px; min-width: 0; }
+.content > h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.03em; max-width: 22ch; }
+.lede { font-size: 16px; line-height: 1.6; color: var(--color-neutral-400); max-width: 62ch; text-wrap: pretty; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 28px; } .rail { position: static; } .section { padding-block: 0 64px; } }
+
+/* hero */
+.hero { position: relative; padding-block: 96px 80px; overflow: hidden; }
+html { overflow-x: clip; }
+.glow { position: absolute; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, var(--color-accent-800), transparent 68%); filter: blur(40px); opacity: .7; pointer-events: none; }
+.hero .glow { top: -180px; left: -120px; animation: noct-glow 6s ease-in-out infinite alternate; }
+@keyframes noct-glow { from { transform: translate(0,0); } to { transform: translate(60px, 30px); } }
+@media (prefers-reduced-motion: reduce) { .hero .glow { animation: none; } html { scroll-behavior: auto; } }
+.hero-inner { position: relative; display: grid; gap: 36px; max-width: 1000px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero h1 { font-size: clamp(44px, 7.4vw, 104px); line-height: 0.94; letter-spacing: -0.035em; max-width: 12ch; }
+.hero .bar { height: 3px; width: 120px; background: var(--color-accent); }
+.hero .sub { font-size: clamp(19px, 2.2vw, 28px); line-height: 1.4; color: var(--color-neutral-300); max-width: 34ch; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.stats { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; margin-top: 80px; background: var(--color-neutral-900); border: 1px solid var(--color-neutral-900); border-radius: var(--radius-lg); overflow: hidden; }
+.stat { background: var(--color-bg); padding: 28px 24px; min-width: 0; }
+.stat b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: clamp(30px, 3vw, 40px); letter-spacing: -0.03em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.stat b.accent { color: var(--color-accent); }
+.nowrap { white-space: nowrap; }
+.stat small { display: block; font-size: 13px; color: var(--color-neutral-500); margin-top: 8px; line-height: 1.5; }
+
+/* saturated section */
+.why { background: linear-gradient(160deg, var(--color-section), var(--color-section-glow)); padding-block: 96px; margin-bottom: 96px; }
+.why h6 { color: var(--color-accent-200); margin: 0 0 12px; }
+.why .rule { background: var(--color-accent-300); }
+.why h2 { font-size: clamp(30px, 4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; color: var(--color-neutral-100); max-width: 24ch; }
+.why p { font-size: 18px; line-height: 1.6; color: var(--color-accent-200); max-width: 62ch; text-wrap: pretty; }
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px; }
+.pillar { border-left: 2px solid var(--color-accent-300); padding: 4px 0 4px 16px; min-width: 0; }
+.pillar b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: 15px; color: var(--color-neutral-100); }
+.pillar span { display: block; font-size: 14px; color: var(--color-accent-200); margin-top: 4px; line-height: 1.5; }
+@media (max-width: 860px) { .why { padding-block: 64px; margin-bottom: 64px; } }
+
+/* role */
+.duties { display: grid; gap: 0; }
+.duty { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; padding: 22px 0; border-top: 1px solid var(--color-neutral-900); }
+.duty:last-child { border-bottom: 1px solid var(--color-neutral-900); }
+.duty .n { font-family: var(--font-heading); font-size: 13px; color: var(--color-accent); padding-top: 5px; font-variant-numeric: tabular-nums; }
+.duty b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: 20px; letter-spacing: -0.02em; }
+.duty p { margin-top: 6px; font-size: 15px; line-height: 1.6; color: var(--color-neutral-400); max-width: 62ch; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 1100px) and (min-width: 601px) { .three { grid-template-columns: repeat(2, 1fr); } .three > :nth-child(3) { grid-column: 1 / -1; } .three > :nth-child(3) ul { columns: 2; column-gap: 28px; } .three > :nth-child(3) li { break-inside: avoid; } }
+@media (max-width: 600px) { .three { grid-template-columns: 1fr; } }
+
+/* schedule */
+.sched { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--color-neutral-900); border: 1px solid var(--color-neutral-900); border-radius: var(--radius-lg); overflow: hidden; }
+.sched > div { background: var(--color-bg); padding: 20px; min-width: 0; }
+.sched b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: 16px; }
+.sched span { display: block; font-size: 13px; color: var(--color-neutral-500); margin-top: 4px; line-height: 1.5; }
+.sched > .span { grid-column: 1 / -1; }
+.sched > .span span { max-width: 80ch; }
+@media (max-width: 1100px) and (min-width: 561px) { .sched { grid-template-columns: repeat(2, 1fr); } .sched > div:nth-child(3) { grid-column: 1 / -1; } .sched > div:nth-child(3) span { max-width: 80ch; } }
+@media (max-width: 560px) { .sched { grid-template-columns: 1fr; } }
+.tz { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.tz th { text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral-500); padding: 8px 10px; font-weight: 500; }
+.tz td { padding: 10px; border-top: 1px solid var(--color-neutral-900); color: var(--color-neutral-300); }
+.tz td:last-child { color: var(--color-neutral-500); }
+.tablewrap { overflow-x: auto; border: 1px solid var(--color-neutral-900); border-radius: var(--radius-md); }
+
+/* process */
+.stages { display: grid; gap: 0; }
+.stage { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 0 0 32px 32px; border-left: 1px solid var(--color-neutral-800); margin-left: 6px; position: relative; }
+.stage::before { content: ""; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--color-accent); }
+.stage:last-child { border-left-color: transparent; }
+.stage .meta b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: 13px; color: var(--color-accent); }
+.stage .meta span { display: block; font-size: 13px; color: var(--color-neutral-500); margin-top: 2px; }
+.stage h3 { font-size: 22px; letter-spacing: -0.02em; }
+.stage > div:last-child { min-width: 0; }
+.stage p { margin-top: 8px; font-size: 16px; line-height: 1.6; color: var(--color-neutral-400); max-width: 62ch; }
+.look { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--color-accent-800); border-radius: var(--radius-md); background: var(--color-accent-900); }
+.look span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-accent-300); }
+.look p { margin: 4px 0 0; font-size: 15px; line-height: 1.55; color: var(--color-accent-200); }
+.look.quiet { border-color: var(--color-neutral-800); background: var(--color-surface); }
+.look.quiet span { color: var(--color-neutral-500); }
+.look.quiet p { color: var(--color-neutral-400); }
+@media (max-width: 600px) { .stage { grid-template-columns: 1fr; gap: 8px; padding-left: 20px; } }
+
+/* pay */
+.big { font-family: var(--font-heading); font-weight: 500; font-size: clamp(28px, 3vw, 34px); letter-spacing: -0.03em; margin-top: 6px; line-height: 1.05; }
+.card .note { font-size: 14px; color: var(--color-neutral-400); line-height: 1.55; margin-top: 4px; }
+
+/* CTA */
+.cta { position: relative; padding-block: 96px 120px; border-top: 1px solid var(--color-neutral-900); overflow: hidden; }
+.cta .glow { right: -160px; bottom: -220px; opacity: .6; filter: blur(50px); }
+.cta-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px; align-items: end; }
+.cta h6 { color: var(--color-accent); }
+.cta h2 { font-size: clamp(32px, 4.6vw, 62px); line-height: 1.04; letter-spacing: -0.035em; max-width: 16ch; }
+.cta .lede { font-size: 18px; max-width: 52ch; }
+.contact { display: grid; gap: 16px; }
+.contact .who { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-neutral-500); }
+.contact .name { font-family: var(--font-heading); font-size: 22px; margin-top: 6px; }
+.contact .title { font-size: 14px; color: var(--color-neutral-400); }
+.email-row { display: flex; gap: 8px; align-items: stretch; }
+.email-row code { flex: 1; min-width: 0; display: flex; align-items: center; padding: 10px 12px; font: 500 15px/1.2 var(--font-heading); color: var(--color-accent); background: var(--color-bg); border: 1px solid var(--color-accent); border-radius: var(--radius-md); user-select: all; overflow-wrap: anywhere; }
+.copy { flex: none; }
+.links { display: grid; gap: 8px; }
+.sms-cta { font-size: 16px; line-height: 1.5; color: var(--color-neutral-200); }
+.sms-cta b { color: var(--color-accent); font-weight: 500; font-variant-numeric: tabular-nums; }
+.fine { font-size: 13px; color: var(--color-neutral-500); line-height: 1.6; }
+.foot { position: relative; margin-top: 72px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 12px; color: var(--color-neutral-600); border-top: 1px solid var(--color-neutral-900); padding-top: 20px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--color-surface); color: var(--color-text); padding: 10px 16px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); font-size: 13px; z-index: 40; }
+</style>
+
+<nav class="nav" aria-label="Page">
+  <a class="brand" href="#top"><span class="brand-mark"><i></i></span><span>Equity Staffing Group</span></a>
+  <div class="nav-links">
+    <a href="#role">Role</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#process">Process</a>
+    <a href="#pay">Pay</a>
+    <a class="btn btn-primary" href="#reply">Reply to April</a>
+  </div>
+</nav>
+
+<section class="hero wrap" id="top">
+  <div class="glow"></div>
+  <div class="hero-inner">
+    <div class="tags">
+      <span class="tag tag-accent">Clinical Pharmacist</span>
+      <span class="tag tag-outline">Medication Therapy Management</span>
+      <span class="tag tag-neutral">Remote · any state except California</span>
+    </div>
+    <h1>Remote MTM Pharmacist</h1>
+    <div class="bar"></div>
+    <p class="sub">Comprehensive medication reviews, by phone, for members who are usually on too many drugs and have never had a pharmacist look at all of them at once. 200 seats. Two start dates.</p>
+    <div class="actions">
+      <a class="btn btn-primary btn-lg" href="#reply">Reply to April →</a>
+      <a class="btn btn-ghost btn-lg" href="#role">Read the pack — 4 min</a>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b class="accent">Up to $60/hr</b><small>W-2 hourly through Equity Staffing Group. Rate set by experience, plus benefits eligible after 60 days of employment.</small></div>
+    <div class="stat"><b><span class="nowrap">Nov 30</span> · <span class="nowrap">Dec 7</span></b><small>Two paid training classes. You pick the one you can start.</small></div>
+    <div class="stat"><b>4–6 months</b><small>Contract to start, with extension or full-time potential.</small></div>
+    <div class="stat"><b>49 states</b><small>Work from wherever you hold your license. California is the one state the program can't use.</small></div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap split">
+    <div class="rail" style="position: static">
+      <h6>Why this work matters</h6>
+      <div class="rule"></div>
+    </div>
+    <div class="content" style="gap: 28px; max-width: 900px">
+      <p>The client is a national health company's Clinical Engagement Services Center. Pharmacists there run Medication Therapy Management, adherence, diabetes, polypharmacy, Star-ratings adherence and retrospective drug-utilization programs for plan members, all by phone, all from home.</p>
+      <p>A good review finds the duplicated therapy, the interaction the fourth prescriber never saw, the pill that stopped being refilled in March. You call the member, you call the provider, you write it down properly. That is the whole job, and it is a clinical one.</p>
+      <div class="pillars">
+        <div class="pillar"><b>Telephonic, not a counter</b><span>Scheduled consultations and comprehensive medication reviews with members. No dispensing, no drive-through, no inventory.</span></div>
+        <div class="pillar"><b>Several programs, one platform</b><span>MTM, adherence, diabetes, polypharmacy, STARS and retrospective DUR, worked inside an MTM platform alongside the usual Microsoft tools.</span></div>
+        <div class="pillar"><b>Measured on quality and volume</b><span>There are productivity and quality targets. The program is behind on hiring and busy, so the pace is real.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="role">
+  <div class="split">
+    <div class="rail">
+      <h6>01 — The role</h6>
+      <div class="rule"></div>
+      <p>Clinical Pharmacist on an MTM team. Fully remote. You report into the client's program leads; Equity Staffing Group is your employer of record.</p>
+    </div>
+    <div class="content">
+      <h2>You'd run the medication review end to end: the call, the findings, the recommendation, the record.</h2>
+      <div class="duties">
+        <div class="duty"><div class="n">01</div><div><b>Consult with members by phone</b><p>Telephonic consultations and comprehensive medication reviews, scheduled through the program's platform.</p></div></div>
+        <div class="duty"><div class="n">02</div><div><b>Find what's wrong with the regimen</b><p>Review medications and clinical information for gaps in care, adherence problems, drug interactions, high-risk medications and therapeutic opportunities. Assess dosing, effectiveness and likely adverse reactions.</p></div></div>
+        <div class="duty"><div class="n">03</div><div><b>Educate, then recommend</b><p>Patient education on medications and disease-state management. Clinical recommendations go to the member and to their providers.</p></div></div>
+        <div class="duty"><div class="n">04</div><div><b>Document it accurately</b><p>Patient care, interventions and recommendations recorded in full, HIPAA kept, productivity and quality expectations met.</p></div></div>
+      </div>
+      <div class="three">
+        <div class="card">
+          <div class="card-kicker">You need</div>
+          <ul>
+            <li>An active, unrestricted pharmacist license in the state you live in. Any state except California.</li>
+            <li>Working knowledge of disease-state management and the 5 Core Elements of MTM.</li>
+            <li>1+ year working remotely or independently in a cross-functional team.</li>
+            <li>Comfort running an MTM platform and several applications at once.</li>
+            <li>Clear phone communication, tidy documentation, good time management.</li>
+            <li>Intermediate Word, Outlook and Excel.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Helps, not required</div>
+          <ul>
+            <li>PharmD.</li>
+            <li>2+ years in retail, community or PBM pharmacy. New-graduate experiential rotations count.</li>
+            <li>Call-center experience.</li>
+            <li>A diabetes-related certification.</li>
+            <li>Bilingual in Cantonese, Korean, Mandarin, Russian, Spanish or Vietnamese.</li>
+            <li>Extra licenses in AL, ID, KS, KY, LA, MD, MN, MO, OK, OR, TN, VT or WV.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-kicker">The plain caveats</div>
+          <ul>
+            <li>It is a contract, 4–6 months to start, with the potential for extension or conversion to full-time.</li>
+            <li>Shifts rotate between 9 AM and 8 PM Central, Monday to Friday. Extended hours and occasional weekends can be required.</li>
+            <li>There are productivity and quality metrics, and the program is behind on hiring. Expect a full calendar.</li>
+            <li>Medical, dental and vision start after 60 days, not day one.</li>
+            <li>The program is open to pharmacists in every state except California at this time.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lede">The posting asks for 2+ years of MTM experience. The program will take recent graduates who are licensed. If you are somewhere in between, reply anyway and let April make the call.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="schedule">
+  <div class="split">
+    <div class="rail">
+      <h6>02 — The schedule</h6>
+      <div class="rule"></div>
+      <p>The center runs on Central time. Your shift rotates inside its window, wherever you live.</p>
+    </div>
+    <div class="content">
+      <h2>Monday to Friday, rotating shifts between 9 AM and 8 PM Central.</h2>
+      <div class="sched">
+        <div><b>Fully remote</b><span>From your home in any licensed state except California.</span></div>
+        <div><b>Rotating shifts</b><span>Inside the 9 AM–8 PM CT window. Extended hours and occasional weekends may be required.</span></div>
+        <div><b>Paid training</b><span>Starts with your class, Nov 30 or Dec 7, 2026.</span></div>
+      </div>
+      <div class="tablewrap">
+        <table class="tz">
+          <thead><tr><th>If you're in</th><th>The window is</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Eastern</td><td>10:00 AM – 9:00 PM</td><td>Latest finish of anyone.</td></tr>
+            <tr><td>Central</td><td>9:00 AM – 8:00 PM</td><td>The center's own clock.</td></tr>
+            <tr><td>Mountain (DST states)</td><td>8:00 AM – 7:00 PM</td><td>Shifts one hour in summer.</td></tr>
+            <tr><td>Arizona</td><td>8:00 AM – 7:00 PM in winter, 7:00 AM – 6:00 PM in summer</td><td>No daylight saving.</td></tr>
+            <tr><td>Pacific</td><td>7:00 AM – 6:00 PM</td><td>Earliest start.</td></tr>
+            <tr><td>Alaska / Hawaii</td><td>6:00 AM – 5:00 PM / 4:00 AM – 3:00 PM</td><td>Ask April about shift placement.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lede">Times shown for the Nov 30 and Dec 7 starts (standard time). The window is fixed; which eight-ish hours you work inside it rotates, and the program sets that, not Equity Staffing Group.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="process">
+  <div class="split">
+    <div class="rail">
+      <h6>03 — The process</h6>
+      <div class="rule"></div>
+      <p>Four stages, and only two of them need your time. Classes start Nov 30 and Dec 7, so everything on Equity Staffing Group's side moves same-day.</p>
+    </div>
+    <div class="content">
+      <div class="stages">
+        <div class="stage">
+          <div class="meta"><b>Stage 1</b><span>2 min · online</span><span>You</span></div>
+          <div>
+            <h3>Pre-screen form</h3>
+            <p>A handful of questions: your license state, MTM background, which class you can start, and whether you are already working with an Equity Staffing Group recruiter on this. No essays. Attach your resume if it's handy; if not, email it to April before your call.</p>
+            <div class="look"><span>What we look for</span><p>A license in the state you live in and availability for one of the two classes. That is all the form decides.</p></div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="meta"><b>Stage 2</b><span>15 min · phone</span><span>April Toms</span></div>
+          <div>
+            <h3>Call with April</h3>
+            <p>Book it on her calendar, and make sure April has your resume by email before the call if you haven't already sent it. Half of the call is April asking about your MTM work, your home setup for phone work, and your rate. The other half is yours: ask about the client, the shift rotation, the conversion track record, anything this page didn't answer.</p>
+            <div class="look"><span>What we look for</span><p>How you talk about a medication review. Whether the schedule works for your life. Whether the rate works, before anyone's time is spent.</p></div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="meta"><b>Stage 3</b><span>Same day · no action from you</span></div>
+          <div>
+            <h3>Submittal</h3>
+            <p>April sends your resume and a short summary to the program's team. If you are already in with another Equity Staffing Group recruiter, say so on the form and nothing gets duplicated.</p>
+            <div class="look quiet"><span>What we look for</span><p>Nothing new. This stage is April's work, not yours.</p></div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="meta"><b>Stage 4</b><span>Phone or video</span><span>The program's clinical team</span></div>
+          <div>
+            <h3>Client interview</h3>
+            <p>A conversation with the people who run the program. April tells you the format, the length and who you'll meet before it is scheduled, and preps you for it.</p>
+            <div class="look"><span>What they look for</span><p>Working knowledge of the 5 Core Elements of MTM, how you handle a member on the phone, and whether you can carry a documented, measured caseload.</p></div>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="meta"><b>Offer</b><span>Equity Staffing Group</span></div>
+          <div>
+            <h3>Offer and onboarding</h3>
+            <p>Offer letter, onboarding paperwork and your class date come from Equity Staffing Group. Paid training starts with the class. If the answer is no, April tells you that too, with whatever the program said.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="pay">
+  <div class="split">
+    <div class="rail">
+      <h6>04 — Pay &amp; benefits</h6>
+      <div class="rule"></div>
+      <p>Hourly, W-2, through Equity Staffing Group. The number is on this page so you can decide whether to spend fifteen minutes on a call.</p>
+    </div>
+    <div class="content">
+      <div class="two">
+        <div class="card elev-sm">
+          <div class="card-kicker">Hourly rate</div>
+          <div class="big">Up to $60/hr</div>
+          <p class="note">W-2 through Equity Staffing Group. Where you land depends on MTM experience and licensure.</p>
+        </div>
+        <div class="card elev-sm">
+          <div class="card-kicker">Contract</div>
+          <div class="big">4–6 months</div>
+          <p class="note">With the potential for extension, or conversion to full-time employment with the client.</p>
+        </div>
+      </div>
+      <div class="sched">
+        <div><b>Medical, dental, vision</b><span>Through Equity Staffing Group, effective after 60 days of employment.</span></div>
+        <div><b>Paid training</b><span>From the first day of your class.</span></div>
+        <div><b>Remote, 49 states</b><span>No relocation, no office. California excluded.</span></div>
+        <div class="span"><b>Pharmacists you know</b><span>The program needs more than 100 more pharmacists across the two classes, so please share this. Send the page to friends, former classmates and colleagues, or post it in the pharmacist groups you're part of. Anyone licensed outside California can email April directly, and it helps to mention who sent them.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="reply">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="content" style="gap: 20px">
+        <h6>One action</h6>
+        <h2>Start with the 2-minute pre-screen. That's the application.</h2>
+        <p class="lede">Fill in the form, then book your 15-minute call with April using the link on the confirmation page or the button here. No portal and no cover letter. If you haven't already applied and sent your resume, email it to April before the call. Have a question first? Email April. She replies to everyone.</p>
+      </div>
+      <div class="card elev-md contact">
+        <div>
+          <div class="who">Your contact</div>
+          <div class="name">April Toms</div>
+          <div class="title">Pharmacist Recruiter, Equity Staffing Group</div>
+        </div>
+        <div class="links">
+          <a class="btn btn-primary btn-block btn-lg" href="https://april-recruiting.app.n8n.cloud/form/mtm-apply">Step 1 · Fill in the 2-minute pre-screen</a>
+          <a class="btn btn-secondary btn-block" href="https://calendly.com/april-mindsageflow/new-meeting">Step 2 · Book the 15-minute call</a>
+        </div>
+        <div class="who" style="margin-top: 4px">Resume before your call · questions</div>
+        <div class="email-row">
+          <code id="email">atoms@equitysg.com</code>
+          <button class="btn btn-secondary copy" id="copyBtn" type="button">Copy</button>
+        </div>
+        <div class="who" style="margin-top: 4px">Prefer texting?</div>
+        <p class="sms-cta">Text <b>PHARM</b> to <b>(682) 345-8373</b> for the pre-screen link.</p>
+        <p class="fine">Texts are optional and not required to apply. Up to 4 messages per conversation. Message and data rates may apply. Reply STOP to cancel, HELP for help. <a href="https://mindsageflow.com/sms-terms">SMS Terms</a> · <a href="https://mindsageflow.com/privacy-policy">Privacy</a></p>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span>Equity Staffing Group, recruiting for a national health company's clinical engagement services center. Client named on the call.</span>
+      <span>Pack last updated October 21, 2026 · Remote MTM Pharmacist</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var btn = document.getElementById('copyBtn');
+  var email = document.getElementById('email');
+  function toast(msg) {
+    var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+    document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800);
+  }
+  function selectIt() {
+    try { var r = document.createRange(); r.selectNodeContents(email); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+  }
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast('Email address copied'); }, function () { selectIt(); toast('Select and copy the address'); });
+    } else { selectIt(); toast('Select and copy the address'); }
+  });
+})();
+</script>
+
+</body></html>

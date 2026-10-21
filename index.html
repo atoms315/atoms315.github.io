@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>April Toms, Senior Recruiter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: same family as April's candidate pack and film (Nocturne tokens,
+   ring brand mark, left-rail sections). Hero thesis + a live pipeline strip
+   that lights up node by node, then proof: builds, record, stage, toolkit.
+   Single dark look by choice, to match the rest of her pages. */
+:root {
+  color-scheme: dark;
+  --bg: #161826;
+  --surface: #232532;
+  --text: #e9e9ed;
+  --accent: #9184d9;
+  --accent-hi: #d2cefd;
+  --accent-deep: #2b2741;
+  --accent-mid: #423a6a;
+  --n300: #cfd3e5; --n400: #b2b6ca; --n500: #9397ab; --n600: #75798c; --n800: #3f424d; --n900: #292b31;
+  --band-a: #262a60; --band-b: #353b80; --band-text: #e7e5fe;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --r-md: 8px; --r-lg: 14px;
+  --gl: max(16px, env(safe-area-inset-left, 0px));
+  --gr: max(16px, env(safe-area-inset-right, 0px));
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.55; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--accent-hi); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+ul { margin: 0; padding-left: 18px; }
+li + li { margin-top: 8px; }
+.mono { font-family: var(--font-mono); }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: 14px; line-height: 1.2; color: var(--text); background: transparent; border: 1px solid transparent; padding: 10px 16px; border-radius: var(--r-md); white-space: nowrap; cursor: pointer; }
+.btn-primary { color: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent-hi); }
+.btn-quiet { border-color: var(--n800); }
+.btn-quiet:hover { background: color-mix(in srgb, var(--text) 7%, transparent); color: var(--text); }
+.btn-lg { font-size: 15px; padding: 12px 20px; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; padding-left: var(--gl); padding-right: var(--gr); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--n900); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+.ring { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--accent); display: grid; place-items: center; flex: none; }
+.ring i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.brand span { font-weight: 500; font-size: 15px; letter-spacing: -0.01em; }
+.nav-links { display: flex; align-items: center; gap: 22px; font-size: 13px; color: var(--n400); }
+.nav-links a:not(.btn) { color: inherit; text-decoration: none; }
+.nav-links a:not(.btn):hover { color: var(--accent); }
+@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: var(--gl); padding-right: var(--gr); }
+
+/* hero */
+.hero { position: relative; padding-block: 88px 40px; }
+.glow { position: absolute; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, var(--accent-mid), transparent 68%); filter: blur(40px); opacity: .65; pointer-events: none; }
+.hero .glow { top: -200px; left: -160px; }
+.hero-inner { position: relative; display: grid; gap: 28px; max-width: 980px; }
+.hero h1 { font-size: clamp(40px, 6.6vw, 92px); line-height: 0.96; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .sub { font-size: clamp(18px, 2vw, 24px); line-height: 1.45; color: var(--n300); max-width: 40ch; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.sub .hl { color: var(--accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+.sub .hl:hover { color: var(--accent-hi); }
+.where { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--n500); }
+
+/* live pipeline */
+.pipe { position: relative; margin-top: 56px; border: 1px solid var(--n900); border-radius: var(--r-lg); background: color-mix(in srgb, var(--surface) 55%, transparent); padding: 20px; display: grid; gap: 16px; }
+.pipe-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; }
+.pipe-head b { font-weight: 500; font-size: 15px; }
+.live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--n400); }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 25%, transparent); }
+.nodes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; counter-reset: n; }
+.nodes li { position: relative; margin: 0; padding: 14px 14px 0 0; min-width: 0; }
+.nodes li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--n800); }
+.nodes li::after { content: ""; position: absolute; left: 0; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--n600); }
+.nodes li.on::before { background: var(--accent); }
+.nodes li.on::after { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent); }
+.nodes b { display: block; font-weight: 500; font-size: 14px; line-height: 1.25; }
+.nodes span { display: block; font-size: 12.5px; color: var(--n500); line-height: 1.45; margin-top: 4px; }
+.nodes li { transition: none; }
+.nodes li.on b { color: var(--accent-hi); }
+.pipe-foot { font-size: 13px; color: var(--n500); }
+@media (max-width: 900px) {
+  .nodes { grid-template-columns: 1fr; }
+  .nodes li { padding: 0 0 18px 26px; }
+  .nodes li::before { left: 4px; right: auto; top: 6px; bottom: 0; width: 2px; height: auto; }
+  .nodes li:last-child::before { display: none; }
+  .nodes li::after { left: 0; top: 2px; }
+}
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; margin-block: 40px 96px; background: var(--n900); border: 1px solid var(--n900); border-radius: var(--r-lg); overflow: hidden; }
+.stat { background: var(--bg); padding: 24px 22px; min-width: 0; }
+.stat b { display: block; font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 2.8vw, 38px); letter-spacing: -0.03em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.stat b.a { color: var(--accent); }
+.stat small { display: block; font-size: 13px; color: var(--n500); margin-top: 8px; line-height: 1.5; }
+
+/* sections */
+.section { padding-block: 0 96px; }
+.split { display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); gap: 64px; align-items: start; }
+.rail { position: sticky; top: calc(76px + env(safe-area-inset-top, 0px)); }
+.rail .eyebrow { margin-bottom: 12px; }
+.rule { height: 2px; width: 56px; background: var(--accent); }
+.rail p { font-size: 14px; color: var(--n500); margin-top: 16px; }
+.content { display: grid; gap: 36px; min-width: 0; }
+.content > h2 { font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08; letter-spacing: -0.03em; max-width: 24ch; }
+.lede { font-size: 16px; line-height: 1.65; color: var(--n400); max-width: 64ch; text-wrap: pretty; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 24px; } .rail { position: static; } .section { padding-block: 0 64px; } .stats { margin-bottom: 64px; } }
+
+/* belief band */
+.band { background: linear-gradient(160deg, var(--band-a), var(--band-b)); padding-block: 88px; margin-bottom: 96px; }
+.band .eyebrow { color: var(--accent-hi); }
+.band .rule { background: var(--accent-hi); }
+.band h2 { font-size: clamp(28px, 3.8vw, 50px); line-height: 1.08; letter-spacing: -0.03em; color: #f3f5fe; max-width: 22ch; }
+.band p { font-size: 17px; line-height: 1.65; color: var(--band-text); max-width: 62ch; }
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+.pillar { border-left: 2px solid var(--accent-hi); padding: 2px 0 2px 16px; min-width: 0; }
+.pillar b { display: block; font-weight: 500; font-size: 15px; color: #f3f5fe; }
+.pillar span { display: block; font-size: 14px; color: var(--band-text); margin-top: 4px; line-height: 1.5; }
+@media (max-width: 860px) { .band { padding-block: 64px; margin-bottom: 64px; } }
+
+/* builds */
+.build { display: grid; gap: 18px; padding-top: 28px; border-top: 1px solid var(--n900); }
+.build-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; }
+.build h3 { font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.025em; }
+.build .when { font-family: var(--font-mono); font-size: 12px; color: var(--n500); letter-spacing: .04em; }
+.build > p { font-size: 16px; line-height: 1.65; color: var(--n400); max-width: 66ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .03em; padding: 4px 10px; border-radius: 6px; background: var(--n900); color: var(--n300); }
+.tag.a { background: var(--accent-mid); color: #f5f4ff; }
+.pieces { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.piece { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border-radius: var(--r-md); background: var(--surface); min-width: 0; }
+.piece .k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.piece b { font-weight: 500; font-size: 15px; }
+.piece p { font-size: 14px; color: var(--n400); line-height: 1.55; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.quote { border: 1px solid var(--accent-mid); background: var(--accent-deep); border-radius: var(--r-md); padding: 14px 16px; }
+.quote .k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-hi); }
+.quote p { margin-top: 6px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.6; color: #e7e5fe; }
+
+/* 11-node chain */
+.chainwrap { overflow-x: auto; border: 1px solid var(--n900); border-radius: var(--r-md); padding: 16px; }
+.chain { list-style: none; margin: 0; padding: 0; display: flex; gap: 0; min-width: 980px; counter-reset: c; }
+.chain li { flex: 1; margin: 0; position: relative; padding: 0 8px 0 0; counter-increment: c; min-width: 0; }
+.chain li::before { content: counter(c, decimal-leading-zero); display: block; font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-bottom: 6px; }
+.chain li span { display: block; font-size: 12.5px; line-height: 1.35; color: var(--n300); padding: 8px 8px; border-radius: 6px; background: var(--surface); min-height: 52px; }
+.chain li.ai span { background: var(--accent-mid); color: #f5f4ff; }
+.chain li:not(:last-child)::after { content: ""; position: absolute; right: 0; top: 46px; width: 8px; height: 2px; background: var(--n800); }
+
+/* record */
+.roles { display: grid; }
+.role { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 24px 0; border-top: 1px solid var(--n900); }
+.role:last-child { border-bottom: 1px solid var(--n900); }
+.role .yrs { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.role h3 { font-size: 20px; letter-spacing: -0.02em; }
+.role .org { font-size: 14px; color: var(--n500); margin-top: 2px; }
+.role ul { margin-top: 12px; font-size: 15px; color: var(--n400); max-width: 68ch; }
+@media (max-width: 600px) { .role { grid-template-columns: 1fr; gap: 6px; } }
+
+/* stage */
+.talks { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--n900); border: 1px solid var(--n900); border-radius: var(--r-lg); overflow: hidden; }
+.talk { background: var(--bg); padding: 18px 20px; min-width: 0; }
+.talk .k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--n500); }
+.talk b { display: block; font-weight: 500; font-size: 15px; margin-top: 6px; }
+.talk p { font-size: 13.5px; color: var(--n400); margin-top: 4px; line-height: 1.5; }
+.talk.hl .k { color: var(--accent); }
+
+/* toolkit */
+.kit { display: grid; gap: 0; }
+.kit > div { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 20px; padding: 14px 0; border-top: 1px solid var(--n900); align-items: baseline; }
+.kit > div:last-child { border-bottom: 1px solid var(--n900); }
+.kit dt { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--n500); }
+.kit dd { margin: 0; font-size: 15px; color: var(--n300); min-width: 0; }
+@media (max-width: 600px) { .kit > div { grid-template-columns: 1fr; gap: 4px; } }
+
+/* contact */
+.cta { position: relative; padding-block: 88px 112px; border-top: 1px solid var(--n900); overflow: hidden; }
+.cta .glow { right: -180px; bottom: -240px; opacity: .55; filter: blur(50px); }
+.cta-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: end; }
+.cta h2 { font-size: clamp(30px, 4.4vw, 58px); line-height: 1.04; letter-spacing: -0.035em; max-width: 16ch; margin-top: 12px; }
+.cta .lede { margin-top: 18px; font-size: 17px; }
+.card { display: grid; gap: 14px; padding: 22px; border-radius: var(--r-lg); background: var(--surface); box-shadow: 0 0 0 1px var(--n800), 0 6px 18px rgba(0,0,0,.5); min-width: 0; }
+.card .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--n500); }
+.card .name { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+.card .title { font-size: 14px; color: var(--n400); }
+.row { display: flex; gap: 8px; align-items: stretch; }
+.row code { flex: 1; min-width: 0; display: flex; align-items: center; padding: 10px 12px; font: 500 15px/1.2 var(--font-mono); color: var(--accent); background: var(--bg); border: 1px solid var(--accent); border-radius: var(--r-md); user-select: all; overflow-wrap: anywhere; }
+.foot { position: relative; margin-top: 64px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 12px; color: var(--n600); border-top: 1px solid var(--n900); padding-top: 20px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--surface); color: var(--text); padding: 10px 16px; border-radius: var(--r-md); box-shadow: 0 0 0 1px var(--n800); font-size: 13px; z-index: 40; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<nav class="nav" aria-label="Page">
+  <a class="brand" href="#top"><span class="ring"><i></i></span><span>April Toms</span></a>
+  <div class="nav-links">
+    <a href="#builds">Builds</a>
+    <a href="#record">Track record</a>
+    <a href="#stage">Speaking</a>
+    <a href="#toolkit">Toolkit</a>
+    <a class="btn btn-primary" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="glow"></div>
+  <div class="hero-inner">
+    <p class="eyebrow">Senior Recruiter · Talent Engineering · Talent Intelligence</p>
+    <h1>I <em>build the system</em> that finds hard-to-find people. Then I run it myself.</h1>
+    <p class="sub">15+ years recruiting for hard-to-fill roles, most of them as the only recruiter in the building. Technical talent and licensed clinicians. I build my own AI recruiting workflows in n8n and Claude, use them on live searches, and now I'm building recruiting agents in <a class="hl" href="#grok">Grok Bot</a>.</p>
+    <div class="actions">
+      <a class="btn btn-primary btn-lg" href="#builds">See what I've built →</a>
+      <a class="btn btn-quiet btn-lg" href="#contact">Get in touch</a>
+    </div>
+    <p class="where">Greater Phoenix · Remote since 2012</p>
+  </div>
+
+  <section class="pipe" aria-label="Pharmacist hiring pipeline">
+    <div class="pipe-head">
+      <b>Running now: a remote pharmacist hiring campaign I built in October 2026</b>
+      <span class="live">Live in n8n</span>
+    </div>
+    <ol class="nodes" id="nodes">
+      <li class="on"><b>Candidate film</b><span>90-second narrated video that sells the role before anyone calls.</span></li>
+      <li class="on"><b>2-minute pre-screen</b><span>n8n form. License state, MTM background, start class, resume optional.</span></li>
+      <li class="on"><b>Fit score + alert</b><span>Each submission emails me a fit score, with the resume attached.</span></li>
+      <li class="on"><b>Contact record</b><span>Every applicant is created or updated in a pipeline table.</span></li>
+      <li class="on"><b>Calendly</b><span>The form sends people straight to my calendar for a 15-minute call.</span></li>
+      <li class="on"><b>Friday report</b><span>Every Friday at 3 PM, a summary of the week's activity by state.</span></li>
+    </ol>
+    <p class="pipe-foot">Texting goes out only to people with a consent record. Opt-outs are logged automatically. <a href="#mtm">How it works →</a></p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b class="a">6×</b><small>IT Search Consultant of the Year at Kelly Services, 2014 to 2019, on a national team</small></div>
+    <div class="stat"><b>5 → 30+</b><small>tech hires as the embedded recruiter for a startup later acquired by bp America</small></div>
+    <div class="stat"><b>1:1</b><small>submission-to-interview ratio, with 90%+ offer acceptance</small></div>
+    <div class="stat"><b>#1</b><small>voted session out of 25+ at the AI Recruiting Summit</small></div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap split">
+    <div class="rail" style="position: static">
+      <p class="eyebrow">How I work</p>
+      <div class="rule"></div>
+    </div>
+    <div class="content" style="gap: 28px; max-width: 900px">
+      <h2>I only recommend workflows I run myself.</h2>
+      <p>Most of my career has been spent as the only recruiter on a search, often with no tools or playbook. So I build the tools. When AI got good enough to take real work off a recruiter's plate, I started using it on my own desk first. I teach it now, and I demo it on stage.</p>
+      <div class="pillars">
+        <div class="pillar"><b>Talent engineering</b><span>n8n and Claude workflows for intake, screening, follow-up and reporting, running on real requisitions.</span></div>
+        <div class="pillar"><b>Talent intelligence</b><span>Market maps, ranked target lists, people-data enrichment, and funnel analysis from my own ATS exports.</span></div>
+        <div class="pillar"><b>Technical and healthcare recruiting</b><span>Senior engineers who aren't looking, and licensed clinicians in a market where every employer wants the same people.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="builds">
+  <div class="split">
+    <div class="rail">
+      <p class="eyebrow">Builds</p>
+      <div class="rule"></div>
+      <p>Things I designed and built and use on live work. You can try the first one yourself.</p>
+      <p id="ghRail" hidden><a id="ghRailLink" class="btn btn-quiet" href="#">My GitHub →</a></p>
+    </div>
+    <div class="content">
+      <h2>Recruiting work, automated end to end and shown in public.</h2>
+
+      <article class="build" id="grok">
+        <div class="build-top">
+          <h3>Recruiting agents in Grok Bot</h3>
+          <span class="when">In progress · Oct 2026</span>
+        </div>
+        <p>Grok Bot is xAI's personal agent platform. Agents keep context, run skills and connect to your apps. I'm training on it now and building recruiting agents next. Builds and demos will go here as they ship.</p>
+        <div class="tags"><span class="tag a">Grok Bot</span><span class="tag">AI agents</span><span class="tag">In progress</span></div>
+      </article>
+
+      <article class="build" id="mtm">
+        <div class="build-top">
+          <h3>Remote pharmacist hiring campaign</h3>
+          <span class="when">Oct 2026 · staffing contract</span>
+        </div>
+        <p>This is a high-volume search for 200 remote clinical pharmacists across two training classes. I built every candidate-facing piece and the back end behind them: a narrated film, a candidate pack microsite, a pre-screen form, and n8n workflows that score, log, follow up and report.</p>
+        <div class="tags"><span class="tag a">n8n</span><span class="tag a">Claude</span><span class="tag">Twilio A2P</span><span class="tag">Calendly</span><span class="tag">People data enrichment</span><span class="tag">HTML microsites</span></div>
+        <div class="pieces">
+          <div class="piece"><span class="k">Candidate experience</span><b>Film and candidate pack</b><p>A 90-second narrated film and a microsite that put pay, schedule, caveats and the process up front, so the 15-minute call is spent on fit.</p></div>
+          <div class="piece"><span class="k">Intake</span><b>2-minute pre-screen</b><p>Mobile-friendly n8n form with an optional resume. Each submission emails me a fit score, updates the contact table and sends the candidate to Calendly.</p></div>
+          <div class="piece"><span class="k">Follow-up</span><b>Consent-gated SMS</b><p>Registered Twilio campaign. Inbound replies are classified as yes, other or opt-out. Follow-ups go only to contacts with a consent record.</p></div>
+          <div class="piece"><span class="k">Reporting</span><b>Friday pipeline email</b><p>Every Friday at 3 PM Arizona time I get the week's texts, replies, form submissions, opt-outs and pipeline totals by state.</p></div>
+          <div class="piece"><span class="k">Talent intelligence</span><b>Ranked market map</b><p>Pharmacists scored and sorted by tier and outreach wave, then a bulk enrichment test on the top 50 to measure email match rates before scaling to the top 1,000.</p></div>
+        </div>
+        <div class="links">
+          <a class="btn btn-primary" href="mtm-film/">Watch the film</a>
+          <a class="btn btn-quiet" href="mtm-pharmacist/">Read the candidate pack</a>
+          <a class="btn btn-quiet" href="https://april-recruiting.app.n8n.cloud/form/mtm-apply" target="_blank" rel="noopener">See the pre-screen</a>
+          <a class="btn btn-quiet" id="ghFilm" href="#" target="_blank" rel="noopener" hidden>Film source on GitHub</a>
+        </div>
+      </article>
+
+      <article class="build" id="launchkit">
+        <div class="build-top">
+          <h3>Recruiter Launch Kit</h3>
+          <span class="when">2026 · demoed at AI Recruiting Summit and RecFest</span>
+        </div>
+        <p>Paste an intake call transcript into a form. Eleven n8n steps later, the recruiter has a role folder, a launch kit document, a follow-up reminder on the calendar and a link in email and Slack. The kit has seven sections: role brief, screening guide, sourcing plan, hiring manager alignment, follow-up flags, a launch note and reminders.</p>
+        <div class="chainwrap" tabindex="0" aria-label="The eleven workflow steps">
+          <ol class="chain">
+            <li><span>Intake form: role + transcript</span></li>
+            <li><span>Create role folder in Drive</span></li>
+            <li><span>Create transcript doc</span></li>
+            <li><span>Save raw transcript</span></li>
+            <li class="ai"><span>Claude drafts the launch kit</span></li>
+            <li><span>Clean the text</span></li>
+            <li><span>Create launch kit doc</span></li>
+            <li><span>Insert the kit</span></li>
+            <li><span>Reminder on the calendar in 2 days</span></li>
+            <li><span>Email the links</span></li>
+            <li><span>Slack the links</span></li>
+          </ol>
+        </div>
+        <div class="quote">
+          <span class="k">From the prompt</span>
+          <p>Do not pretend the transcript answered things it did not answer. Separate confirmed intake details from AI-inferred recruiter recommendations. If something is missing, vague, conflicting, or risky, put it under Recruiter Follow-Up Flags.</p>
+        </div>
+        <div class="links">
+          <a class="btn btn-primary" href="https://github.com/atoms315/n8n-recruiter-launch-kit" target="_blank" rel="noopener">Get the workflow on GitHub</a>
+          <a class="btn btn-quiet" href="https://www.youtube.com/watch?v=g2Bq3cezzYE" target="_blank" rel="noopener">Watch the walkthrough</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="record">
+  <div class="split">
+    <div class="rail">
+      <p class="eyebrow">Track record</p>
+      <div class="rule"></div>
+      <p>Embedded and exclusive recruiter for startups, individual contributor on a national direct-hire team, and now recruiting clinical pharmacists.</p>
+    </div>
+    <div class="content">
+      <div class="roles">
+        <div class="role">
+          <div class="yrs">Oct 2026 – now</div>
+          <div>
+            <h3>Pharmacist Recruiter (contract)</h3>
+            <p class="org">Staffing contract · Remote</p>
+            <ul>
+              <li>Recruiting remote clinical pharmacists for a national health company's medication therapy management program.</li>
+              <li>Built the candidate film, candidate pack, pre-screen and automated follow-up and reporting behind the search.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role">
+          <div class="yrs">2022 – 2026</div>
+          <div>
+            <h3>Senior IT Talent Strategist &amp; AI Champion</h3>
+            <p class="org">Davis Technology Management · Dallas–Fort Worth</p>
+            <ul>
+              <li>Built the IT staffing division of an MSP from scratch. Led three recruiters and an HR manager.</li>
+              <li>Embedded recruiter for a renewable natural gas startup for 2.5 years. Grew its tech org from about 5 to 30+ hires across software, data, infrastructure and PMO, working with the CTO and CISO. The company was acquired by bp America.</li>
+              <li>Evaluated and rolled out recruiting AI across the firm: autonomous interviewing, meeting intelligence and AI sourcing sequences.</li>
+              <li>Drove the recruiting output behind the firm's Gem Top Startup Staffing Agency recognition.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role">
+          <div class="yrs">2020 – 2022</div>
+          <div>
+            <h3>Founder &amp; Technical Recruiting Consultant</h3>
+            <p class="org">Atomic Recruiting, LLC · Independent</p>
+            <ul>
+              <li>Exclusive recruiter for a network and cybersecurity startup. Filled about a dozen senior and principal engineering roles in a year, with no internal recruiting support.</li>
+              <li>Grew a sensory software startup's engineering team from the founder and one engineer to about 8 senior engineers.</li>
+              <li>Partnered with the CTO of a healthcare tech startup to build out engineering, business analysis, project management and BI.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role">
+          <div class="yrs">2012 – 2020</div>
+          <div>
+            <h3>Senior Technical Recruiter, National Direct Hire</h3>
+            <p class="org">Kelly Services · Remote</p>
+            <ul>
+              <li>IT Search Consultant of the Year six years running, 2014 to 2019.</li>
+              <li>Ran mid-to-senior technical pipelines across disciplines, industries and regions at the same time.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="stage">
+  <div class="split">
+    <div class="rail">
+      <p class="eyebrow">Speaking &amp; writing</p>
+      <div class="rule"></div>
+      <p>I talk about AI in recruiting the way I use it, with live workflows and real numbers.</p>
+    </div>
+    <div class="content">
+      <div class="talks">
+        <div class="talk hl"><span class="k">Speaker · 2026</span><b>RecFest</b><p>AI recruiting workflows, built around the Recruiter Launch Kit.</p></div>
+        <div class="talk hl"><span class="k">Speaker</span><b>AI Recruiting Summit</b><p>Talent Llama session with co-founder Benjamin Chaikin. Voted #1 of 25+ sessions.</p></div>
+        <div class="talk"><span class="k">Fireside chat</span><b>TalentSphere Summit</b><p>Modern talent leadership, with Neko Sombrio.</p></div>
+        <div class="talk"><span class="k">Presenter</span><b>hireEZ FRBR Conference</b><p>Solo talk on autonomy and the gig economy.</p></div>
+        <div class="talk"><span class="k">Podcast &amp; live</span><b>hireEZ Podcast · LinkedIn Live</b><p>AI in recruiting with Daniel Harten. Panelist with Trent Cotton and Alex Pappgeorge.</p></div>
+        <div class="talk"><span class="k">Published</span><b>SourceCon, 4 articles</b><p>The gig economy, recruiter performance and stress, and sourcing for lean startup teams.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="toolkit">
+  <div class="split">
+    <div class="rail">
+      <p class="eyebrow">Toolkit</p>
+      <div class="rule"></div>
+      <p>Tools I've used on the job. Clay is the one I'm still learning.</p>
+    </div>
+    <div class="content">
+      <dl class="kit">
+        <div><dt>Build &amp; automate</dt><dd>n8n, Claude, Zapier, Twilio, Airtable</dd></div>
+        <div><dt>Talent intelligence</dt><dd>LinkedIn Talent Insights, People Data Labs, funnel analysis from ATS exports</dd></div>
+        <div><dt>AI sourcing</dt><dd>hireEZ, Pin, SeekOut, Findem, Juicebox, BetterLeap, LinkedIn Recruiter</dd></div>
+        <div><dt>Interview AI</dt><dd>Talent Llama, Metaview, BrightHire, Fireflies.ai</dd></div>
+        <div><dt>ATS</dt><dd>Ashby, Bullhorn, Loxo, Zoho Recruit, Taleo</dd></div>
+        <div><dt>People data</dt><dd>ZoomInfo, Apollo.io, Lusha, ContactOut, Hunter.io, RocketReach, SignalHire</dd></div>
+        <div><dt>Learning now</dt><dd>Grok Bot, Clay, Notion</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <p class="eyebrow">Next step</p>
+        <h2>Hiring a recruiter who builds?</h2>
+        <p class="lede">I'm looking for my next senior recruiting, talent engineering or talent intelligence role, in tech or healthcare. Fully remote from Arizona, and happy to travel.</p>
+      </div>
+      <div class="card">
+        <div>
+          <div class="k">Contact</div>
+          <div class="name">April Toms</div>
+          <div class="title">Senior Recruiter · Tech &amp; Healthcare</div>
+        </div>
+        <div class="row">
+          <code id="email">atoms0315@gmail.com</code>
+          <button class="btn btn-quiet" id="copyBtn" type="button">Copy</button>
+        </div>
+        <a class="btn btn-primary btn-lg" href="https://www.linkedin.com/in/apriltoms" target="_blank" rel="noopener">LinkedIn →</a>
+        <a class="btn btn-quiet" id="ghCard" href="#" target="_blank" rel="noopener" hidden>GitHub →</a>
+      </div>
+    </div>
+    <div class="foot">
+      <span>April Toms · Greater Phoenix, Arizona</span>
+      <span>Updated October 2026</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  /* GitHub: fill in to show the GitHub buttons; empty keeps them hidden. */
+  var GITHUB_PROFILE = "https://github.com/atoms315";
+  var GITHUB_FILM = "";
+  function show(id, url) { var el = document.getElementById(id); if (el && url) { el.href = url; el.hidden = false; } }
+  show('ghCard', GITHUB_PROFILE); show('ghRailLink', GITHUB_PROFILE); show('ghFilm', GITHUB_FILM);
+  if (GITHUB_PROFILE) document.getElementById('ghRail').hidden = false;
+
+  /* pipeline: all nodes lit at rest; a pulse walks through them */
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('#nodes li'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && nodes.length) {
+    var cycle = nodes.length + 4, step = nodes.length + 1;
+    setInterval(function () {
+      step++;
+      var lit = step % cycle;
+      nodes.forEach(function (n, i) { n.classList.toggle('on', i < lit); });
+    }, 850);
+  }
+
+  /* copy email */
+  var btn = document.getElementById('copyBtn'), email = document.getElementById('email');
+  function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800); }
+  function selectIt() { try { var r = document.createRange(); r.selectNodeContents(email); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {} }
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast('Email copied'); }, function () { selectIt(); toast('Select and copy the address'); });
+    } else { selectIt(); toast('Select and copy the address'); }
+  });
+})();
+</script>
+
+</body>
+</html>
